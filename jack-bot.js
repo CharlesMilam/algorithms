@@ -13,6 +13,9 @@
         //
         // Return 'accept' to play the drawn card, or 'gamble' to draw a different card.
         //
+        console.log(drawnCard);
+        console.log(remainingDeckSize);
+        console.log(moveType);
         if (moveType === 'normal' || moveType === 'war') {
           return 'gamble'
         }
