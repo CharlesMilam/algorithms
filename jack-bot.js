@@ -16,11 +16,14 @@
         console.log(drawnCard);
         console.log(remainingDeckSize);
         console.log(moveType);
-        if (moveType === 'normal' || moveType === 'war') {
-          return 'gamble'
+        if (drawnCard.value > 3 && drawnCard.value < 10 && moveType != "normal-gamble" && moveType != "war-gamble") {
+          return "gamble";
+        }
+        else if (drawnCard.value > 7 && moveType === "war") {
+          return "accept";
         }
         else {
-          return 'accept'
+          return "accept";
         }
       },
       handleRoundResult: function (didIWin, loot) {
