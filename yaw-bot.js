@@ -29,6 +29,18 @@
       },
       handleRoundResult: function (didIWin, loot) {
         // TODO: Whatever you want. You can do aanything
+        console.log(didIWin);
+        console.log(loot[1])
+        console.log(loot[0]["value"]);
+        var opPlus, opMinus, opNeutral;
+        var mePlus, meMinus, meNeutral;
+
+        // opponent's values
+        switch (loot[1].isMine) {
+          case loot[1].value < 5:
+            console.log("in < 5 value");
+            break;
+        }
       }
     }
   }
