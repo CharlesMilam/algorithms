@@ -4,7 +4,12 @@
 
   var BotClass = function () {
     // <<Initialize bot state here>>
-
+    var oppPlus = 0;
+    var oppMinus = 0;
+    var oppNeutral = 0;
+    var mePlus = 0;
+    var meMinus = 0;
+    var meNeutral = 0;
     return {
       name: botName,
       play: function (drawnCard, remainingDeckSize, moveType) {
@@ -18,7 +23,13 @@
         // console.log(moveType);
         // more conservative gamble > 8
         if (drawnCard.value < 7 && moveType != "normal-gamble" && moveType != "war-gamble") {
-          return "gamble";
+          if (oppMinus / mePlus >= 0.75) {
+            return "accept";
+          }
+          else {
+            return "gamble";
+          }
+
         }
         else if (drawnCard.value > 7 && moveType === "war") {
           return "accept";
@@ -29,15 +40,10 @@
       },
       handleRoundResult: function (didIWin, loot) {
         // TODO: Whatever you want. You can do aanything
-        console.log(didIWin);
-        console.log(loot[1])
-        console.log(loot[0]["value"]);
-        var oppPlus = 0;
-        var oppMinus = 0;
-        var oppNeutral = 0;
-        var mePlus = 0;
-        var meMinus = 0;
-        var meNeutral = 0;
+        // console.log(didIWin);
+        // console.log(loot[1])
+        // console.log(loot[0]["value"]);
+
 
         // yaw's values
         switch (loot[1].isMine) {
@@ -54,16 +60,19 @@
 
         // oppponent's values
         switch (loot[0].isMine === "undefined"){
-            case loot[0].value < 5:
-            oppMinus += 1;
-            break;
+          case loot[0].value < 5:
+              oppMinus += 1;
+              break;
           case loot[0].value >= 5 && loot[0].value < 10:
-            oppNeutral += 1;
-            break;
+              oppNeutral += 1;
+              break;
           case loot[0].value > 9:
-            oppPlus += 1;
-            break;
+              oppPlus += 1;
+              break;
         }
+        // console.log(meMinus);
+        // console.log(meNeutral);
+        // console.log(mePlus);
       }
     }
   }
