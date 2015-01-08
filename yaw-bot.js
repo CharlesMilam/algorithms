@@ -1,6 +1,6 @@
 (function () {
 
-  var botName = 'jackblack-bot'
+  var botName = 'yaw-bot'
 
   var BotClass = function () {
     // <<Initialize bot state here>>
