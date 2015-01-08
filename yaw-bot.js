@@ -23,7 +23,7 @@
         // console.log(moveType);
         // more conservative gamble > 8
         if (drawnCard.value < 7 && moveType != "normal-gamble" && moveType != "war-gamble") {
-          if (oppMinus / mePlus >= 0.75) {
+          if (oppMinus / mePlus >= 2.4) {
             return "accept";
           }
           else {
@@ -32,10 +32,16 @@
 
         }
         else if (drawnCard.value > 7 && moveType === "war") {
-          return "accept";
+          if (oppMinus / mePlus >= 0.09) {
+            return "accept";
+          }
+          else {
+            return "gamble";
+          }
         }
         else {
-          return "accept";
+         return "accept";
+
         }
       },
       handleRoundResult: function (didIWin, loot) {
